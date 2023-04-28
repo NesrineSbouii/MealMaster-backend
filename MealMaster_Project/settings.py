@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -38,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'MealMaster_App',
-    'rest_framework',
     'rest_framework_swagger',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'MealMaster_Project.urls'
@@ -57,7 +62,7 @@ ROOT_URLCONF = 'MealMaster_Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['MealMaster_Project/MealMaster_App/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,17 +84,18 @@ WSGI_APPLICATION = 'MealMaster_Project.wsgi.application'
 DATABASES = {
        'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'citus',
-        'USER': 'citus',
+        'NAME': 'postgres',
+        'USER': 'mealmaster2',
         'PASSWORD': 'biba0507@B',
-        'HOST': 'c.mealmastercluster.postgres.database.azure.com',
+        'HOST': 'mealmasterpgsql2.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
-            'sslrootcert': '/Users/hassibaachour/Downloads/DigiCertGlobalRootG2.crt.pem',
+            'sslrootcert': '/Users/hassibaachour/Downloads/DigiCertGlobalRootCA.crt.pem',
         }
     }
 }
+
 
 
 # Password validation
@@ -132,3 +138,23 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = "/"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+   'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticated',
+   ],
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.SessionAuthentication',
+       'rest_framework.authentication.TokenAuthentication',
+   )
+}
+
+CORS_ALLOWED_ORIGINS = [
+   "http://localhost:4200",
+]
+
+AUTH_USER_MODEL='MealMaster_App.User'
