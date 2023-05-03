@@ -85,9 +85,9 @@ DATABASES = {
        'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'mealmaster2',
+        'USER': 'mealmaster',
         'PASSWORD': 'biba0507@B',
-        'HOST': 'mealmasterpgsql2.postgres.database.azure.com',
+        'HOST': 'mealmaster.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
