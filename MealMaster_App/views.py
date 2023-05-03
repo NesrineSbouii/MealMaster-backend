@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from .models import User
 from .serializers import UserSerializer
-
+from rest_framework import permissions
 from .models import MonImage
 from django.http import HttpResponse
 
@@ -25,9 +25,15 @@ def index(request):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+       API endpoint that allows users to be viewed or edited.
+       """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
+
+
+
 
 
 class UserLogIn(ObtainAuthToken):
