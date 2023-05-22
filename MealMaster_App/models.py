@@ -22,25 +22,4 @@ class Tag(models.Model):
     def __str__(self):
         return f"{self.tag}"
 
-class User(AbstractUser):
 
-    username = models.TextField(blank=True, unique=True, default="")
-    password = models.TextField(blank=True)
-    email_adress = models.TextField(blank=True)
-    #profile_pic = models.ImageField(blank=True)
-    groups = models.ManyToManyField(Group, verbose_name=_('groups'), blank=True, related_name="meal_master_user_groups")
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name=_('_user permissions'),
-        blank=True,
-        related_name='meal_master_user_permission',
-        help_text=_('_Specific permissions for this user.'),
-    )
-
-    @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-    def create_auth_token(sender, instance=None, created=False, **kwargs):
-        if created:
-            Token.objects.create(user=instance)
-
-    def __str__(self):
-        return self.username

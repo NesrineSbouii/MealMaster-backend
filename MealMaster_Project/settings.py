@@ -85,9 +85,9 @@ DATABASES = {
        'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
-        'USER': 'mealmaster',
+        'USER': 'mealmaster2',
         'PASSWORD': 'biba0507@B',
-        'HOST': 'mealmaster.postgres.database.azure.com',
+        'HOST': 'mealmaster2.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
@@ -157,4 +157,3 @@ CORS_ALLOWED_ORIGINS = [
    "http://localhost:4200",
 ]
 
-AUTH_USER_MODEL='MealMaster_App.User'
