@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'MealMaster_Project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
        'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -87,7 +86,7 @@ DATABASES = {
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
-            'sslrootcert': '/Users/hassibaachour/Downloads/DigiCertGlobalRootG2.crt.pem',
+            'sslrootcert': '/Users/hassibaachour/Downloads/DigiCertGlobalRootCA.crt.pem',
         }
     }
 }
