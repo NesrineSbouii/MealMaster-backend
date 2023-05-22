@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'MealMaster_App',
     'rest_framework',
     'rest_framework_swagger',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -79,10 +80,10 @@ WSGI_APPLICATION = 'MealMaster_Project.wsgi.application'
 DATABASES = {
        'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'citus',
-        'USER': 'citus',
+        'NAME': 'postgres',
+        'USER': 'mealmaster',
         'PASSWORD': 'biba0507@B',
-        'HOST': 'c.mealmastercluster.postgres.database.azure.com',
+        'HOST': 'mydbpsql.postgres.database.azure.com',
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
@@ -132,3 +133,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}

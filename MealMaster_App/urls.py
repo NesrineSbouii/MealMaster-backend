@@ -1,6 +1,6 @@
+from .views import RegisterAPI
 from django.urls import path
-from .views import index
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('api/register/', RegisterAPI.as_view(), name='register'),
 ]
