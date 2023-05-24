@@ -45,28 +45,13 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-#CORS_ALLOWED_ORIGINS = [
- #   'http://localhost:4200',
-#]
-CORS_ALLOW_ALL_ORIGINS = True
-ACCESS_CONTROL_ALLOW_ORIGIN = "*"
-ALLOWED_HOSTS = ["localhost"]
-CORS_ALLOW_METHODS = (
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-)
-CORS_ALLOW_HEADERS = (
-    "accept",
-    "authorization",
-    "content-type",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-)
+CORS_ORIGIN_ALLOW_ALL = False  # Set to True to allow all origins
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+]
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
